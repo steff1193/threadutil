@@ -7,3 +7,9 @@ Java_dk_designware_threadutil_schedule_Util_getNativeThreadId(JNIEnv *env, jobje
     jint tid = syscall(__NR_gettid);
     return tid;
 }
+
+JNIEXPORT jint JNICALL
+Java_dk_designware_threadutil_schedule_Util_getNativeProcessId(JNIEnv *env, jobject obj) {
+    jint pid = getpid();
+    return pid;
+}
