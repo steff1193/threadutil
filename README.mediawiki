@@ -23,6 +23,6 @@ dk.designware.threadutil.schedule.Util: Misc utility methods for Java thread pri
 <li>Run your program with</li>
 <pre>
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./target/native/
-java -classpath classes ...
+java -classpath ./target/classes ...
 </pre>
 </ul>
