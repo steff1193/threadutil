@@ -2,7 +2,11 @@
 
 Utillities for Java threads
 
+Linux only
+
 '''Building and testing'''
+
+You will need java and maven
 
 * Build using ./src/scripts/build.sh
 * Run simple test using ./src/scripts/run_UtilTest.sh
