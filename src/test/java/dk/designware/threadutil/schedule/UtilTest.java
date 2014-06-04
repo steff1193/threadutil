@@ -17,7 +17,7 @@ public class UtilTest {
         
         Thread[] threads = new Thread[noThreads];
         for (int i = 0; i < noThreads; i++) {
-        	threads[i] = new Thread(new SlowLWPAndSleepRunnable(sleepMs));
+        	threads[i] = new Thread(new SlowLWPAndSleepRunnable(sleepMs, i==0));
         	threads[i].start();
         }
         List<Integer> threadIds = Util.getNativeThreadIds();
@@ -39,16 +39,26 @@ public class UtilTest {
 	private static class SlowLWPAndSleepRunnable implements Runnable {
 		
 		private long sleepMs;
+		private boolean realTime;
 		
-		private SlowLWPAndSleepRunnable(long sleepMs) {
+		private SlowLWPAndSleepRunnable(long sleepMs, boolean realTime) {
 			this.sleepMs = sleepMs;
+			this.realTime = realTime;
 		}
 
 		public void run() {
+			String additionalText = "";
+			if (realTime) {
+				SchedParam sp = new SchedParam();
+				sp.schedPriority = 99;
+				Util.setScheduler(Util.getNativeThreadId(), SchedPolicy.SCHED_FIFO, sp);
+				additionalText = ", running realtime priority";
+			}
 			System.out.println(
 					"Thread: name: " + Thread.currentThread().getName() + 
 					", java-Thread-id: " + Thread.currentThread().getId() + 
-					", native-thread-id (LWP) = " + Util.getNativeThreadId());
+					", native-thread-id (LWP) = " + Util.getNativeThreadId() +
+					additionalText);
 			try {
 				Thread.sleep(sleepMs);
 			} catch (InterruptedException e) {

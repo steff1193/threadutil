@@ -39,6 +39,8 @@ public class Util {
     public static List<Integer> getNativeThreadIds() {
     	return getNativeThreadIds(getNativeProcessId());
     }
+    
+    public static native int setScheduler(int nativeThreadId, int policy, SchedParam schedParam);
 
     static {
         System.loadLibrary("DesignWareThreadUtilScheduleUtil");
