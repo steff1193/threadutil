@@ -1,5 +1,7 @@
 package dk.designware.threadutil.schedule;
 
+import java.util.List;
+
 public class UtilTest {
 
 	private static final int noThreads = 3;
@@ -17,6 +19,11 @@ public class UtilTest {
         for (int i = 0; i < noThreads; i++) {
         	threads[i] = new Thread(new SlowLWPAndSleepRunnable(sleepMs));
         	threads[i].start();
+        }
+        List<Integer> threadIds = Util.getNativeThreadIds();
+        System.out.println("Total list of native-thread-ids running under current process");
+        for (Integer threadId : threadIds) {
+        	System.out.println("  " + threadId);
         }
         try {
         	System.out.println("Now sleeping for " + sleepMs + " ms. Giving you a chance to inspect e.g. using 'top -H -p " + Util.getNativeProcessId() +"'");
