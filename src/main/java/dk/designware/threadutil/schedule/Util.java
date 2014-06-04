@@ -40,6 +40,13 @@ public class Util {
     	return getNativeThreadIds(getNativeProcessId());
     }
     
+    /**
+     * Changes priority of the thread (LWP) on OS-level. Similar to linux sched_setscheduler/chrt
+     * @param nativeThreadId The thread-id (LWP) of the thread to have its priority changed
+     * @param policy The policy to use (use values from SchedPolicy)
+     * @param schedParam The priority to set
+     * @return The policy for the thread (a nonnegative integer). On error -1
+     */
     public static native int setScheduler(int nativeThreadId, int policy, SchedParam schedParam);
 
     static {
