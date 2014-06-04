@@ -6,7 +6,7 @@ Linux only
 
 '''Building and testing'''
 
-You will need java and maven
+You will need java, maven and gcc
 
 * Build using ./src/scripts/build.sh
 * Run simple test using ./src/scripts/run_UtilTest.sh
@@ -14,3 +14,15 @@ You will need java and maven
 '''Utilities'''
 
 dk.designware.threadutil.schedule.Util: Misc utility methods for Java thread priority
+
+'''How to use'''
+
+<ul>
+<li>Build</li>
+<li>Add ./target/classes to classpath and use static methods on dk.designware.threadutil.schedule.Util</li> 
+<li>Run your program with</li>
+<pre>
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:./target/native/
+java -classpath classes ...
+</pre>
+</ul>
