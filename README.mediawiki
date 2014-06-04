@@ -2,11 +2,11 @@
 
 Utillities for Java threads
 
-==Building and testing==
+'''Building and testing'''
 
 Build using ./src/scripts/build.sh
 Run simple test using ./src/scripts/run_UtilTest.sh
 
-==Utilities==
+'''Utilities'''
 
 dk.designware.threadutil.schedule.Util: Misc utility methods for Java thread priority
